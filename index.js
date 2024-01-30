@@ -13,7 +13,7 @@ class SVG{
   setTextElement(text, color) {
    this.textElement =  `<text x="150" y="125" font-size="60" text-anchor="middle" fill="${color}">${text}</text>`;
   }
-  setShapeElement(text, color) {
+  setShapeElement(shape) {
     this.shapeElement = shape.render();
   }
 }
@@ -66,7 +66,7 @@ function writeToFile(fileName, data) {
 async function init() {
 
   var svgString = "";
-  var svgFile = shape1.svg;
+  var svgFile = "shape1.svg";
 
   //asking users the questions
     const answers = await inquirer.prompt(questions);
@@ -99,7 +99,7 @@ async function init() {
     } else if (shape1ShapeType === "Triangle") {
         shape1 = new Triangle();
         console.log("You haveselected Triangle!");
-    } else if (flynnShapeType === "Circle") {
+    } else if (shape1ShapeType === "Circle") {
         shape1 = new Circle();
         console.log("You have selected Circle!");
     } else {
@@ -107,7 +107,7 @@ async function init() {
     }
     shape1.setColor(shape1ShapeColor);
 
-    var svg = new Svg();
+    var svg = new SVG();
 
     svg.setTextElement(shape1Text, shape1TextColor);
     svg.setShapeElement(shape1);
@@ -115,7 +115,7 @@ async function init() {
 
    
    
-    writeToFile('./logo.svg', shape1());  
+    writeToFile('./logo.svg', svgString);  
     
 }
 
